@@ -3,6 +3,7 @@ package com.example.identityservice.controller;
 import com.example.identityservice.dto.request.ApiResponse;
 import com.example.identityservice.dto.request.UserCreationRequest;
 import com.example.identityservice.dto.request.UserUpdateRequest;
+import com.example.identityservice.dto.response.UserResponse;
 import com.example.identityservice.entity.User;
 import com.example.identityservice.service.UserService;
 import jakarta.validation.Valid;
@@ -19,23 +20,23 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getUser (){
+    public List<UserResponse> getUser (){
         return  userService.getUsers();
     }
     @GetMapping("/{userId}")
-    public User getUser(@PathVariable String userId){
+    public UserResponse getUser(@PathVariable String userId){
         return userService.getUser(userId);
     }
 
     @PostMapping
-  public   ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
-        ApiResponse<User> apiResponse = new ApiResponse<>();
+  public   ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
         apiResponse.setResult(userService.createUser(request));
         return apiResponse;
     }
 
     @PutMapping("/{userId}")
-    public User updateUser (@PathVariable("userId") String userId , @RequestBody UserUpdateRequest request ){
+    public UserResponse updateUser (@PathVariable("userId") String userId , @RequestBody UserUpdateRequest request ){
         return userService.updateUser( userId ,request);
     }
     @DeleteMapping("/{userId}")
