@@ -1,4 +1,4 @@
-package com.example.identityservice.dto.request;
+package com.example.identityservice.dto.response;
 
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -12,10 +12,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateRequest {
-    @Size(min = 8, message = "INVALID_PASSWORD")
-     String password;
-     String firstName;
-     String lastName;
-     LocalDate dateOfBirth;
+public class UserResponse {
+    String id;
+    String userName;
+    String password;
+    String firstName;
+    String lastName;
+    LocalDate dateOfBirth;
 }
