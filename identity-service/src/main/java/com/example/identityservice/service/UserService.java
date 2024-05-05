@@ -9,23 +9,29 @@ import com.example.identityservice.exception.AppException;
 import com.example.identityservice.exception.ErrorCode;
 import com.example.identityservice.mapper.UserMapper;
 import com.example.identityservice.repository.UserRepository;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    UserRepository userRepository;
+    UserMapper userMapper;
 //    private final ModelMapper modelMapper;
 
     public List<UserResponse> getUsers() {
-        return userRepository.findAll().stream().map(user ->
-                        UserResponse.builder()
+        return userRepository.findAll()
+                .stream()
+                .map(user ->
+                        UserResponse
+                                .builder()
                                 .id(user.getId())
                                 .userName(user.getUserName())
                                 .password(user.getPassword())

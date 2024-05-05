@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class UserMapper {
-   public User toUser(UserCreationRequest request) {
+    public User toUser(UserCreationRequest request) {
         return User.builder()
                 .userName(request.getUserName())
                 .password(request.getPassword())
@@ -22,23 +22,23 @@ public class UserMapper {
                 .build();
     }
 
-  public   void updateUser(User user, UserUpdateRequest request) {
-       user.setPassword(request.getPassword());
-       user.setFirstName(request.getFirstName());
-       user.setLastName(request.getLastName());
-       user.setDateOfBirth(request.getDateOfBirth());
+    public void updateUser(User user, UserUpdateRequest request) {
+        user.setPassword(request.getPassword());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setDateOfBirth(request.getDateOfBirth());
 
     }
 
     public UserResponse toUserResponse(User user) {
-       return UserResponse
-               .builder()
-               .id(user.getId())
-               .userName(user.getUserName())
-               .password(user.getPassword())
-               .firstName(user.getFirstName())
-               .lastName(user.getLastName())
-               .dateOfBirth(user.getDateOfBirth())
-               .build();
+        return UserResponse
+                .builder()
+                .id(user.getId())
+                .userName(user.getUserName())
+                .password(user.getPassword())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .dateOfBirth(user.getDateOfBirth())
+                .build();
     }
 }

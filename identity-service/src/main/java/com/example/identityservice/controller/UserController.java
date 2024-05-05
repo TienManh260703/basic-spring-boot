@@ -4,20 +4,22 @@ import com.example.identityservice.dto.request.ApiResponse;
 import com.example.identityservice.dto.request.UserCreationRequest;
 import com.example.identityservice.dto.request.UserUpdateRequest;
 import com.example.identityservice.dto.response.UserResponse;
-import com.example.identityservice.entity.User;
 import com.example.identityservice.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    private UserService userService;
+
+    UserService userService;
 
     @GetMapping
     public List<UserResponse> getUser (){
