@@ -66,6 +66,8 @@ public class UserService {
         User existingUser = userRepository.findById(userId).orElseThrow(() ->
                 new RuntimeException("User not found"));
         userMapper.updateUser(existingUser, request);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);// 10 là độ manh của thuật toán
+        existingUser.setPassword(passwordEncoder.encode(request.getPassword()));
         return userMapper.toUserResponse(userRepository.save(existingUser));
     }
 

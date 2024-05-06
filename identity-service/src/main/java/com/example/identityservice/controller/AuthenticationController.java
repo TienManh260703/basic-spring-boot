@@ -21,12 +21,9 @@ public class AuthenticationController {
 
     @PostMapping("/log-in")
     ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-        boolean result = authenticationService.authenticate(request); // kiểm tra pass
+            var result = authenticationService.authenticate(request); // kiểm tra pass
         return ApiResponse.<AuthenticationResponse>builder()
-                .result(AuthenticationResponse
-                        .builder()
-                        .authenticated(result)
-                        .build())
+                .result(result)
                 .build();
     }
 }
